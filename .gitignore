@@ -1,0 +1,19 @@
+﻿# Java / Gradle
+/build/
+/out/
+/target/
+/.gradle/
+/*.iml
+/.idea/
+
+# Logs
+*.log
+logs/
+
+# Docker artifacts
+*.jar
+*.war
+
+# Secrets
+.env
+application-*.yml

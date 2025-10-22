@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: tgbot
+      POSTGRES_USER: tgbot
+      POSTGRES_PASSWORD: tgbot
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tgbot -d tgbot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [botnet]
+
+  adminer:
+    image: adminer
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    networks: [botnet]
+
+  bot:
+    build: .
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      # если оставляешь секреты в application-docker.yml, этого хватает
+      # лучше вынести в .env и ссылаться через ${...}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks: [botnet]
+
+volumes:
+  dbdata:
+
+networks:
+  botnet:
