@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tgbot
+    username: tgbot
+    password: tgbot
+  jpa:
+    hibernate:
+      ddl-auto: update   # или validate, если используешь Flyway
+    open-in-view: false
+  flyway:
+    enabled: false       # включишь позже, когда добавим миграции
+
+server:
+  port: 8080
+
+app:
+  webhookToken: "dev123"
+  admins: [ 508490900 ]
+  defaultAssignee: 508490900
+  telegramEnabled: true
+
+telegram:
+  bot:
+    username: "chxlsbot"
+    token: "8140280578:AAHCWkoFKERJDYUZU2rhYPHyWCkLqt3YxOk"

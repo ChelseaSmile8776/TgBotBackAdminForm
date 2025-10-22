@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/tgbot   # если в docker-compose POSTGRES_DB=postgres
+    username: tgbot                               # если в docker-compose POSTGRES_USER=postgres
+    password: tgbot                               # если в docker-compose POSTGRES_PASSWORD=postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+  flyway:
+    enabled: false
+
+server:
+  port: 8080
+
+app:
+  webhookToken: "dev123"
+  admins: [508490900]
+  defaultAssignee: 508490900
+  telegramEnabled: true
+
+telegram:
+  bot:
+    username: "chxlsbot"
+    token: "8140280578:AAHCWkoFKERJDYUZU2rhYPHyWCkLqt3YxOk"
